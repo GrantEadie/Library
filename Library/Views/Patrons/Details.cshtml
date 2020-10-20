@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Patron
+
+<h2>Patron Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.PatronFirstName): @Html.DisplayFor(model => model.PatronFirstName)</h3>
+
+@if(@Model.Copies.Count == 0)
+{
+  <p>This patron does not have any copies</p>
+}
+else
+{
+  <h4>Copies the Patron belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.Copies)
+  {
+    <li>@join.Copy.CopyName</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
+<p>@Html.ActionLink("Edit Patron", "Edit", new { id = Model.PatronId })</p>
+<p>@Html.ActionLink("Add a Copy", "AddCopy", new { id = Model.PatronId })</p>
+<p>@Html.ActionLink("Delete Patron", "Delete", new { id = Model.PatronId })</p>
+
+<a href="/Patrons" class="btn btn-outline-dark">Back to list</a>
+<a href="Edit/@Model.PatronId" class="btn btn-outline-dark">Edit</a>

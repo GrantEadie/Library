@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Genre
+
+<h4>Add a new genre</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.GenreName)
+    @Html.TextBoxFor(model => model.GenreName)
+    @Html.LabelFor(model => model.GenreDescription)
+    @Html.TextBoxFor(model => model.GenreDescription)
+    <input type="submit" value="Add new genre" />
+}
+<p>@Html.ActionLink("Show all genres", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>

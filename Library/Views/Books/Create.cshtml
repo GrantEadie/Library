@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Book
+
+<h3>Add a new Book</h3><hr>
+
+<div class="row">
+  <div class="col-sm">
+  </div>
+    <div class="col-sm">
+    @using (Html.BeginForm())
+  {
+  <p>Book Title: </p>
+  @Html.TextBoxFor(model => model.BookName, new {@style="width:100%"})<br><br>
+
+  <p>Author: </p>
+
+  <p>Book Genre: </p>
+  @Html.DropDownList("GenreId", null, new {@class="form-control"})<br><br>
+
+  <input type="submit" value="Add a new book" class="btn btn-outline-dark btn-block" /><br>
+  }
+  <p>@Html.ActionLink("Show all Books", "Index", null, null, new { @class="btn btn-outline-dark btn-block"})</p>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>

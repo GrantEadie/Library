@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Copy
+
+<h4>Add a new copy</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.CopyName)
+    @Html.TextBoxFor(model => model.CopyName)
+    <input type="submit" value="Add new copies" />
+}
+<p>@Html.ActionLink("Show all copies", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>

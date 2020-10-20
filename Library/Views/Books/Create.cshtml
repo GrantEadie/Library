@@ -16,6 +16,7 @@
   @Html.TextBoxFor(model => model.BookName, new {@style="width:100%"})<br><br>
 
   <p>Author: </p>
+  @Html.DropDownList("AuthorId", null, new {@class="form-control"})<br>
 
   <p>Book Genre: </p>
   @Html.DropDownList("GenreId", null, new {@class="form-control"})<br><br>

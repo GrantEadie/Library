@@ -4,17 +4,24 @@
 
 @model Library.Models.Author
 
-<h4>Add a new Author</h4>
-
-@using (Html.BeginForm())
+<h4>Add a new Author</h4><hr>
+<div class="row">
+    <div class="col-sm">
+      @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.AuthorName)
-    @Html.TextBoxFor(model => model.AuthorName)
+    <p>Author Name: </p>
+    @Html.TextBoxFor(model => model.AuthorName, new {@style="width:100%"})<br><br>
     
 
-    @Html.Label("Select Author")
-    @Html.DropDownList("AuthorId")
+    <p>Select Genre: </p>
+    @Html.DropDownList("GenreId", null, new {@class="form-control"})<br>
 
-    <input type="submit" value="Add a new author" class="btn btn-default" />
+    <input type="submit" value="Add a new author" class="btn btn-outline-info btn-block" /><br>
 }
-<p>@Html.ActionLink("Show all Authors", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
+<p>@Html.ActionLink("Show all Authors", "Index", null, null, new { @class = "btn btn-outline-dark btn-block"})</p>
+    </div>
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>

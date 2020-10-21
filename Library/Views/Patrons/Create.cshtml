@@ -8,11 +8,13 @@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.PatronFirstName)
-    @Html.TextBoxFor(model => model.PatronFirstName)
-    @Html.LabelFor(model => model.PatronLastName)
-    @Html.TextBoxFor(model => model.PatronLastName)
-
-    <input type="submit" value="Add new Patron" class="btn btn-default" />
+    <p>Patron's First Name
+    @Html.TextBoxFor(model => model.PatronFirstName)</p>
+    <br>
+    <p>Patron's Last Name
+    @Html.TextBoxFor(model => model.PatronLastName)</p>
+<br><br>
+    <input type="submit" value="Add new Patron" class="btn btn-outline-dark btn-block" /><br>
 }
-<p>@Html.ActionLink("Show all Patrons", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
+<br>
+<p>@Html.ActionLink("Show all Patrons", "Index", null, null, new {  @class="btn btn-outline-dark btn-block"})</p>

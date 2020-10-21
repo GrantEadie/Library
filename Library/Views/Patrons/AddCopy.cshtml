@@ -4,18 +4,29 @@
 
 @model Library.Models.Patron
 
-<h2>Add a copy</h2>
-
-<h4>Add a copy: @Html.DisplayFor(model => model.PatronFirstName)</h4>
+<h2>Add a copy</h2><hr>
+<div class="row">
+    <div class="col-sm">
+      <h4>@Html.DisplayFor(model => model.PatronFirstName)</h4>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.PatronId)
 
-    @Html.Label("Select Copy")
-    @Html.DropDownList("CopyId")
+    <p>Select copy: </p>
+    @Html.DropDownList("CopyId", null, new {@class="form-control"})<br><br>
+    <p>CheckOut Date</p>
+    @Html.TextBox("copy", "{yyyy-MM-dd}", new { @class = "dateInput", @placeholder = "input date" })<br><br>
 
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save" class="btn btn-outline-dark btn-block" /><br>
 }
 
-<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
+<p>@Html.ActionLink("Back to list", "Index", null, null, new {  @class="btn btn-outline-dark btn-block"})</p>
+    </div>
+    <div class="col-sm">
+      
+    </div>    
+    <div class="col-sm">
+      
+    </div>
+  </div>

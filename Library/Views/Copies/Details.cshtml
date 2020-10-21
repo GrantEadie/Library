@@ -4,9 +4,9 @@
 
 @model Library.Models.Copy;
 
-<h2>Copy Details</h2>
+<h2>Index Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.CopyName): @Html.DisplayFor(model => model.CopyName)</h3>
+<h3>Index Number: @Html.DisplayFor(model => model.CopyName)</h3>
 
 @if(@Model.Books.Count == 0)
 {
@@ -14,15 +14,13 @@
 }
 else
 {
-  <h4>Number of copies of books:</h4>
-  <ul>
+  <h4>Book Title</h4>
   @foreach(var join in Model.Books)
   {
-    <li>@join.Book.BookName</li>
+    <p>@join.Book.BookName</p>
   }
-  </ul>
 }
 
-<p>@Html.ActionLink("Back to copies", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
-<p>@Html.ActionLink("Edit Copy", "Edit", new { id = Model.CopyId })</p>
-<p>@Html.ActionLink("Delete Copy", "Delete", new { id = Model.CopyId })</p>
+<p>@Html.ActionLink("Back to copies", "Index", null, null, new  {@class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Edit Copy", "Edit", new { id = Model.CopyId }, new {@class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Delete Copy", "Delete", new { id = Model.CopyId }, new {@class="btn btn-outline-dark btn-block"})</p>

@@ -12,10 +12,10 @@
 {
     @Html.HiddenFor(model => model.BookId)
 
-    @Html.Label("Select category")
-    @Html.DropDownList("CategoryId")
+    @Html.Label("Select Copy")
+    @Html.DropDownList("CopyId")
 
     <input type="submit" value="Save" />
 }
 
-<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class="btn btn-outline-dark btn-block"})</p>

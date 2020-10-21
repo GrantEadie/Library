@@ -56,6 +56,8 @@ namespace Library.Controllers
       var thisGenre = _db.Genres
       .Include(genre => genre.Authors)
       .ThenInclude(join => join.Author)
+      .Include(genre => genre.Books)
+      .ThenInclude(join => join.Book)
       .FirstOrDefault(genre => genre.GenreId == id);
       return View(thisGenre);
     }
@@ -79,6 +81,13 @@ namespace Library.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddAuthor(int id)
+    {
+      var thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
+      ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "AuthorName");
+      return View(thisGenre);
+    }
     
     [HttpPost]
     public ActionResult AddAuthor(Genre genre, int AuthorId)
@@ -91,13 +100,24 @@ namespace Library.Controllers
       return RedirectToAction("Index");
     }
     
-    public ActionResult AddAuthor(int id)
+    public ActionResult AddBook(int id)
     {
       var thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
-      ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "AuthorName");
+      ViewBag.BookId = new SelectList(_db.Books, "BookId", "BookName");
       return View(thisGenre);
     }
     
+    [HttpPost]
+    public ActionResult AddBook(Genre genre, int BookId)
+    {
+      if (BookId != 0)
+      {
+        _db.BookGenre.Add(new BookGenre() {BookId = BookId, GenreId = genre.GenreId});
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
     public ActionResult Delete(int id)
     {
       var thisGenre = _db.Genres.FirstOrDefault(genres => genres.GenreId == id);
@@ -122,6 +142,15 @@ namespace Library.Controllers
       _db.AuthorGenre.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteBook(int genreId, int joinId)
+    {
+      var joinEntry = _db.BookGenre.FirstOrDefault(entry => entry.BookGenreId == joinId);
+      _db.BookGenre.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = genreId});
     }
   
   }

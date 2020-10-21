@@ -15,8 +15,9 @@
 
 @foreach (Book book in Model)
 {
-  <li>@Html.ActionLink($"{book.BookName}", "Details", new { id = book.BookId })</li>
+  <p class="list-details">@Html.ActionLink($"{book.BookName}", "Details", new { id = book.BookId })</p>
 }
+<br><br>
 
 <p>@Html.ActionLink("Add a new book", "Create", null, null, new { @class="btn btn-outline-dark btn-block"} )</p>
 

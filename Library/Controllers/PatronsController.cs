@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using System;
 
 namespace Library.Controllers
 {
@@ -79,6 +80,13 @@ namespace Library.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddCopy(int id, int CopyId)
+    {
+      var thisCopy = _db.Copies.FirstOrDefault(copies => copies.CopyId == CopyId);
+      ViewBag.CopyId = new SelectList(_db.Copies, "CopyId", "CopyName");
+      return View(thisCopy);
+    }
     
     [HttpPost]
     public ActionResult AddCopy(Patron patron, int CopyId)
@@ -87,16 +95,9 @@ namespace Library.Controllers
       {
         _db.CopyPatron.Add(new CopyPatron() {CopyId = CopyId, PatronId = patron.PatronId});
       }
-      _db.SaveChanges();
       return RedirectToAction("Index");
     }
     
-    public ActionResult AddCopy(int id)
-    {
-      var thisPatron = _db.Patrons.FirstOrDefault(patrons => patrons.PatronId == id);
-      ViewBag.CopyId = new SelectList(_db.Copies, "CopyId", "Name");
-      return View(thisPatron);
-    }
     
     public ActionResult Delete(int id)
     {

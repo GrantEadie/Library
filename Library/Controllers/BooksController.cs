@@ -30,7 +30,7 @@ namespace Library.Controllers
       var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userBooks);
     }
-
+    
     public ActionResult Create()
     {
       ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "AuthorName");

@@ -3,14 +3,16 @@ using System;
 using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20201020183239_TheNumberSix")]
+    partial class TheNumberSix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,11 +150,19 @@ namespace Library.Migrations
 
                     b.Property<int>("CopyId");
 
+                    b.Property<int?>("PatronId");
+
+                    b.Property<int?>("PatronId1");
+
                     b.HasKey("BookCopyId");
 
                     b.HasIndex("BookId");
 
                     b.HasIndex("CopyId");
+
+                    b.HasIndex("PatronId");
+
+                    b.HasIndex("PatronId1");
 
                     b.ToTable("BookCopy");
                 });
@@ -179,8 +189,6 @@ namespace Library.Migrations
                 {
                     b.Property<int>("CopyId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CopyCheckoutDate");
 
                     b.Property<string>("CopyName");
 
@@ -405,6 +413,14 @@ namespace Library.Migrations
                         .WithMany("Books")
                         .HasForeignKey("CopyId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Library.Models.Patron")
+                        .WithMany("Books")
+                        .HasForeignKey("PatronId");
+
+                    b.HasOne("Library.Models.Patron")
+                        .WithMany("Copies")
+                        .HasForeignKey("PatronId1");
                 });
 
             modelBuilder.Entity("Library.Models.BookGenre", b =>
@@ -435,7 +451,7 @@ namespace Library.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Library.Models.Patron", "Patron")
-                        .WithMany("Copies")
+                        .WithMany("Patrons")
                         .HasForeignKey("PatronId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

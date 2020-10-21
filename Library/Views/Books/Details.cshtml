@@ -7,6 +7,8 @@
 <h2>Book Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.BookName): @Html.DisplayFor(model => model.BookName)</h3>
+<h3>@Html.DisplayNameFor(model => model.BookDescription): @Html.DisplayFor(model => model.BookDescription)</h3>
+<h3>@Html.DisplayNameFor(model => model.NumberOfBooks): @Html.DisplayFor(model => model.NumberOfBooks)</h3>
 
 @if(@Model.Genres.Count == 0)
 {
@@ -52,7 +54,7 @@ else
 }
 else
 {
-  <h4>Number of Copies:</h4>
+  <h4>Index Number:</h4>
   <ul>
   @foreach(var join in Model.Copies)
   {
@@ -66,9 +68,9 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
-<p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId }, new { @class = "btn btn-success btn-sm"})</p>
-<p>@Html.ActionLink("Add an Author", "AddAuthor", new { id = Model.BookId },  new { @class = "btn btn-success btn-sm"})</p>
-<p>@Html.ActionLink("Add a Copy", "AddCopy", new { id = Model.BookId }, new { @class = "btn btn-success btn-sm"})</p>
-<p>@Html.ActionLink("Add a Genre", "AddGenre", new { id = Model.BookId }, new { @class = "btn btn-success btn-sm"})</p>
-<p>@Html.ActionLink("Delete the Book", "Delete", new { id = Model.BookId }, new { @class = "btn btn-success btn-sm"})</p>
+<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add an Author", "AddAuthor", new { id = Model.BookId },  new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add a Copy", "AddCopy", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Add a Genre", "AddGenre", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Delete the Book", "Delete", new { id = Model.BookId }, new { @class="btn btn-outline-dark btn-block"})</p>

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace Library.Models
 {
@@ -12,6 +13,7 @@ namespace Library.Models
 
         public int CopyId { get; set; }
         public string CopyName { get; set; }
+        public DateTime CopyCheckoutDate { get; set; }
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<BookCopy> Books { get; set; }
         public virtual ICollection<CopyPatron> Patrons { get; set; }

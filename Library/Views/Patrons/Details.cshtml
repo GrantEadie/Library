@@ -5,12 +5,14 @@
 @model Library.Models.Patron
 
 <h2>Patron Details</h2>
-<hr />
-<h3>@Html.DisplayNameFor(model => model.PatronFirstName): @Html.DisplayFor(model => model.PatronFirstName)</h3>
+<hr /><br>
+<div class="row">
+    <div class="col-sm">
+      <h3>@Html.DisplayFor(model => model.PatronFirstName) @Html.DisplayFor(model => model.PatronLastName)</h3><br>
 
 @if(@Model.Copies.Count == 0)
 {
-  <p>This patron does not have any copies</p>
+  <p>This patron does not have any books that are currently checked out.</p><br><br>
 }
 else
 {
@@ -18,15 +20,20 @@ else
   <ul>
   @foreach(var join in Model.Copies)
   {
-    <li>@join.Copy.CopyName</li>
+    
+    <li><a href="/Copies/Details/@join.Copy.CopyId">@join.Copy.CopyName</a></li><br><br>
   }
   </ul>
 }
-
-<p>@Html.ActionLink("Back to list", "Index", null, null, new { @class = "btn btn-success btn-sm"})</p>
-<p>@Html.ActionLink("Edit Patron", "Edit", new { id = Model.PatronId })</p>
-<p>@Html.ActionLink("Add a Copy", "AddCopy", new { id = Model.PatronId })</p>
-<p>@Html.ActionLink("Delete Patron", "Delete", new { id = Model.PatronId })</p>
-
-<a href="/Patrons" class="btn btn-outline-dark">Back to list</a>
-<a href="Edit/@Model.PatronId" class="btn btn-outline-dark">Edit</a>
+<p>@Html.ActionLink("Checkout a book for this Patron", "AddCopy", new { id = Model.PatronId }, new { @class="btn btn-outline-info btn-block"})</p><br>
+<p>@Html.ActionLink("List of Patrons", "Index", null, null, new {@class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Edit Patron", "Edit", new { id = Model.PatronId }, new { @class="btn btn-outline-dark btn-block"})</p>
+<p>@Html.ActionLink("Delete Patron", "Delete", new { id = Model.PatronId }, new { @class="btn btn-outline-danger btn-block"})</p>
+    </div>
+    <div class="col-sm">
+      
+    </div>
+    <div class="col-sm">
+      
+    </div>
+  </div>
